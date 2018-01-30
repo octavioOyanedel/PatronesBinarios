@@ -7,9 +7,7 @@
         //atributos
 
         //metodos
-        public function __construct(){
-
-        }
+        public function __construct(){}
 
         public function crearMatriz(&$matriz){
 
