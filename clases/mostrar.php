@@ -32,11 +32,11 @@
 
         }
 
-        function verArray($array){
+        public function verArray($array){
 
             for ($i=0; $i < sizeof($array); $i++) {
 
-                echo $array[$i]." ";
+                echo "[".$array[$i]."]";
 
             }
 

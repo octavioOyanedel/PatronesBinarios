@@ -1,12 +1,18 @@
 <?php
 
     require_once("mostrar.php");
-    define("PATRON",14);
+    // NOTE: patron debe arrojar al menos 7 numeros
+    //12 = 8, 6 sino 2 si
+    //13 = 10, 8 sino 2 si
+    //14 = 15,
+    define("PATRON",12);
 
     class MatrizPatron {
 
         //atributos
         private static $posicion;
+        private static $cont = 0;
+        private static $contIgual = 0;
 
         //metodos
         public function __construct(){
@@ -16,6 +22,10 @@
         }
 
         public function crearPatron(&$bits){
+
+            $n = sizeof($bits);
+
+            $this->verControl();
 
             // NOTE: recorrer matriz binaria por columnas
 
@@ -31,14 +41,18 @@
 
                 }
 
-                $this->crearPatrones($fila);
+                $this->crearPatrones($fila,$n,$bits);
 
             }
+
+            $total = MatrizPatron::$contIgual + MatrizPatron::$cont;
+            echo "</br>";
+            echo "TOTAL: ".$total." EVALUAR: ".MatrizPatron::$contIgual." ACIERTOS: ".MatrizPatron::$cont;
 
         }
 
 
-        public function crearPatrones($fila){
+        public function crearPatrones($fila,$n,$bits){
 
             $mostrar = new Mostrar();
             $patron = array();
@@ -63,12 +77,12 @@
             $this->buscarPatron($fila,$patron1);
             //$mostrar->verArray($patron0);
             //$mostrar->verArray($patron1);
-            $this->compararSioNo($patron0,$patron1,MatrizPatron::$posicion);
+            $this->compararSioNo($patron0,$patron1,MatrizPatron::$posicion,$n,$bits);
             MatrizPatron::$posicion++;
 
         }
 
-        public function compararSioNo($patron0,$patron1,$numero){
+        public function compararSioNo($patron0,$patron1,$numero,$n,$bits){
 
             $candidato = 0;
 
@@ -81,16 +95,74 @@
             if ($patron0[PATRON + 1] < $patron1[PATRON + 1]) {
 
                 $candidato = $numero;
+                MatrizPatron::$cont++;
 
             }
 
             if ($patron0[PATRON + 1] == $patron1[PATRON + 1]) {
 
-                $candidato = -9;
+                $candidato = $this->evaluarBinomial($numero,$n,$bits);
+                MatrizPatron::$contIgual++;
 
             }
 
-            echo $candidato." ";
+            echo $this->formatearNumero($candidato);
+
+        }
+
+        public function evaluarBinomial($numero,$n,$bits){
+
+echo $numero,"</br>";
+
+            $aciertos = $this->contarNumero($numero,$bits);
+
+        }
+
+        public function contarNumero($numero,$bits){
+
+            $cont = 0;
+
+            for ($i=0; $i < sizeof($bits); $i++) {
+
+                for ($j=0; $j < sizeof($bits[$i]); $j++) {
+
+                    if($bits[$i][$j] == $numero){
+
+                        $cont++;
+
+                    }
+
+                }
+
+            }
+
+            return $cont;
+
+        }
+
+        public function verControl(){
+
+            for ($i=0; $i < 36; $i++) {
+
+                echo $this->formatearNumero($i + 1);
+
+            }
+
+            echo "</br>";
+
+        }
+
+        public function formatearNumero($numero){
+
+            if ($numero > 9) {
+
+                return "[".$numero."]";
+
+            }else{
+
+                return "[".str_pad($numero, 2, "0", STR_PAD_LEFT)."]";
+
+            }
 
         }
 
