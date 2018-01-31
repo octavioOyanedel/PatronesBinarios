@@ -16,11 +16,11 @@
 
     				if($matriz[$i][$j] == -1){
 
-    					echo "[n]";
+    					echo "[nl]";
 
     				}else {
 
-    					echo "[".$matriz[$i][$j]."]";
+    					echo $this->formatearNumero($matriz[$i][$j]);
 
     				}
 
@@ -36,12 +36,25 @@
 
             for ($i=0; $i < sizeof($array); $i++) {
 
-                echo "[".$array[$i]."]";
+                echo $this->formatearNumero($array[$i]);
 
             }
 
             echo "</br>";
 
+        }
+
+        public function formatearNumero($numero){
+
+            if ($numero > 9) {
+
+                return "[".$numero."]";
+
+            }else{
+
+                return "[".str_pad($numero, 2, "0", STR_PAD_LEFT)."]";
+
+            }
         }
 
         public function __destruct(){}

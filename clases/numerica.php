@@ -1,15 +1,21 @@
 <?php
 
     require_once("datos/consulta.php");
+    require_once("mostrar.php");
 
-    class MatrizNumerica{
+    class Numerica{
 
         //atributos
+        private $numerica;
 
         //metodos
-        public function __construct(){}
+        public function __construct(){
 
-        public function crearMatriz(&$matriz){
+            $this->numerica = array();
+
+        }
+
+        public function crearColeccion(){
 
             $consulta = new Consulta();
             $resultados = $consulta->consultar($consulta->getSql());
@@ -26,12 +32,19 @@
 
                 }
 
-                $matriz[$k] = $array;
+                $this->numerica[$k] = $array;
                 $k++;
 
             }
 
             mysqli_free_result($resultados);
+
+        }
+
+        public function verColeccion(){
+
+            $mostrar = new Mostrar();
+            $mostrar->verMatriz($this->numerica);
 
         }
 

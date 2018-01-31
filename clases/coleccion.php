@@ -1,60 +1,36 @@
 <?php
 
-    require_once("matriz_numerica.php");
-    require_once("matriz_binaria.php");
-    require_once("matriz_patron.php");
-    require_once("mostrar.php");
+    require_once("numerica.php");
+    require_once("binomial.php");
+    require_once("binaria.php");
 
     class Coleccion{
 
         //atributos
-        private $matrizNumerica;
-        private $matrizBinaria;
-        private $matrizPatron;
-        private $matrizPatron0;
-        private $matrizPatron1;
-
+        private $numerica;
+        private $binomial;
+        private $binaria;
 
         //metodos
         public function __construct(){
 
-            $this->matrizNumerica = array();
-            $this->matrizBinaria = array();
+            $this->numerica = new Numerica();
+            $this->binomial = new Binomial();
+            $this->binaria = new Binaria();
 
         }
 
-        public function crearMatrizPatron(){
+        public function crearColecciones(){
 
-            $matrizPatron = new MatrizPatron();
-            $matrizPatron->crearPatron($this->matrizBinaria);
-
-        }
-
-        public function crearMatrizBinaria(){
-
-            $matrizBinaria = new MatrizBinaria();
-            $matrizBinaria->crearMatriz($this->matrizNumerica,$this->matrizBinaria);
+            $this->numerica->crearColeccion();
+            $this->binomial->crearColeccion($this->numerica);
+            $this->binaria->crearColeccion();
 
         }
 
-        public function crearMatrizNumerica(){
+        public function verNumerica(){
 
-            $matrizNumerica = new MatrizNumerica();
-            $matrizNumerica->crearMatriz($this->matrizNumerica);
-
-        }
-
-        public function verMatrizNumerica(){
-
-            $mostrar = new Mostrar();
-            $mostrar->verMatriz($this->matrizNumerica);
-
-        }
-
-        public function verMatrizBinaria(){
-
-            $mostrar = new Mostrar();
-            $mostrar->verMatriz($this->matrizBinaria);
+            $this->numerica->verColeccion();
 
         }
 
