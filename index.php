@@ -6,8 +6,7 @@
     $coleccion->crearMatrizNumerica();
     //$coleccion->verMatrizNumerica();
     $coleccion->crearMatrizBinaria();
-    $coleccion->verMatrizBinaria();
+    //$coleccion->verMatrizBinaria();
     $coleccion->crearMatrizPatron();
-    $coleccion->verMatrizPatron();
 
 ?>

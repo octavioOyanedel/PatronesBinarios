@@ -11,20 +11,22 @@
         private $matrizNumerica;
         private $matrizBinaria;
         private $matrizPatron;
+        private $matrizPatron0;
+        private $matrizPatron1;
+
 
         //metodos
         public function __construct(){
 
             $this->matrizNumerica = array();
             $this->matrizBinaria = array();
-            $this->matrizPatron = array();
 
         }
 
         public function crearMatrizPatron(){
 
             $matrizPatron = new MatrizPatron();
-            $matrizPatron->crearMatriz($this->matrizBinaria,$this->matrizPatron);
+            $matrizPatron->crearPatron($this->matrizBinaria);
 
         }
 
@@ -53,13 +55,6 @@
 
             $mostrar = new Mostrar();
             $mostrar->verMatriz($this->matrizBinaria);
-
-        }
-
-        public function verMatrizPatron(){
-
-            $mostrar = new Mostrar();
-            $mostrar->verMatriz($this->matrizPatron);
 
         }
 

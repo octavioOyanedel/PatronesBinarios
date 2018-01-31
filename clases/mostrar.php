@@ -32,6 +32,18 @@
 
         }
 
+        function verArray($array){
+
+            for ($i=0; $i < sizeof($array); $i++) {
+
+                echo $array[$i]." ";
+
+            }
+
+            echo "</br>";
+
+        }
+
         public function __destruct(){}
 
     }//fin clase
