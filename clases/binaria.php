@@ -13,7 +13,7 @@
 
         public function crearColeccion(){
 
-            echo "crear coleccion binaria </br>";
+
 
         }
 

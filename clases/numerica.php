@@ -48,6 +48,12 @@
 
         }
 
+        public function getColeccion(){
+
+            return $this->numerica;
+
+        }
+
         public function __destruct(){}
 
     }//fin clase

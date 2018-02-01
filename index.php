@@ -4,7 +4,8 @@
 
     $colecciones = new Coleccion();
     $colecciones->crearColecciones();
-    $colecciones->verNumerica();
-    echo "string";
+    //$colecciones->verNumerica();
+
+
 
 ?>
